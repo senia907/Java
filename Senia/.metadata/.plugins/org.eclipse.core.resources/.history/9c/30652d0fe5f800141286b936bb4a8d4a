@@ -6,7 +6,7 @@ import model.MyModel;
 
 public class Run {
 
-	public static void main(String[] args) {		//For git test - in Run of CLI - 23:23
+	public static void main(String[] args) {
 		MyModel m=new MyModel();
 		MyView v=new MyView();
 		Controller c=new Controller(m, v);

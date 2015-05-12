@@ -1,0 +1,2 @@
+this is java file with a star algorithem
+added this second line as the second commit

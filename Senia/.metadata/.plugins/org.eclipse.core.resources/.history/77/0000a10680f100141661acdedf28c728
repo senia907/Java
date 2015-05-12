@@ -1,0 +1,6 @@
+package view;
+
+public interface View {
+	void start(UserCommands usCom);
+	void display(String s);
+}

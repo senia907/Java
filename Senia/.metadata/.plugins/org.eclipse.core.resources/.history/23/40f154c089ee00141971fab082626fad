@@ -1,0 +1,32 @@
+package view;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.GZIPOutputStream;
+
+public class Run {
+
+	public static void main(String[] args) {
+		GZIPOutputStream zipOut = null;
+		try {
+			zipOut = new GZIPOutputStream(new FileOutputStream("out.zip"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			zipOut.write("mississippi river".getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			zipOut.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

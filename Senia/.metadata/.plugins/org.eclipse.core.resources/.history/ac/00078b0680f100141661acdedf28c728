@@ -1,0 +1,42 @@
+package controller;
+
+import java.io.File;
+
+import model.Model;
+import view.Command;
+import view.ConDirCommand;
+import view.View;
+
+public class Controller {
+
+	Model m;
+	View v;
+	
+	public Controller(Model m, View v) {
+		this.m=m;
+		this.v=v;
+	}
+	
+	public void zipFile(String fileName){	//ELIS
+		m.zipfile(fileName);
+	}
+	
+	private class ConDirCommand implements Command{
+		@Override
+		public void doCommand(String path) {
+			File file = new File(path);
+			if (file.isFile()){
+				System.out.println(file);
+			}
+			else{
+				for (File f : file.listFiles()){
+					System.out.println(f);
+				}
+			}
+		}
+	}
+	
+	public void display(String s){
+		v.display(s);
+	}
+}

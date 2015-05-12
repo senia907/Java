@@ -1,0 +1,13 @@
+package compression_algorithms;
+import java.util.BitSet;
+
+/**
+* Used for easy storing the char and its BitSet representation.
+* @author  Senia Kalma
+* @since   3/5/2015
+*/
+public class CharNode {
+	char ch;
+	BitSet bitRep = new BitSet();
+
+}

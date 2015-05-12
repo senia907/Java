@@ -1,0 +1,38 @@
+package compression_algorithms;
+
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+
+public class Run {
+
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		Compressor huf = new HuffmanAlg();
+		//String str = "mississippi river";
+		//String str = "Senia is kalma is a great man is working on man fucking is great stupid hours for the jave project hes doing with the great Bar Magnezi and senia is fellling that he actully learnt a shit or two";
+		String str="mississippi river is a great river in mississippi";
+		ByteArrayInputStream from = new ByteArrayInputStream(str.getBytes());
+		//InputStream from = new FileInputStream("C:\\greg.txt");
+		FileOutputStream file = (new FileOutputStream("resources/java.txt"));
+		/*huf.compress(from,file);
+		System.out.println("===\nFinished compressing to: "+file.toString()+"\n===");
+		InputStream is = new FileInputStream("resources/java.txt");
+		OutputStream good = new FileOutputStream("resources/chars.txt");
+		huf.deCompress(is, good);*/
+		System.out.println("Last Compress SHIT ==========");
+		Compressor dic = new WordDictionary();
+		dic.compress(from, file);
+		System.out.println("finished WORDDIC compression");
+		InputStream is = new FileInputStream("resources/java.txt");
+		OutputStream good = new FileOutputStream("resources/chars.txt");
+		dic.deCompress(is, good);
+		System.out.println("FINALE");
+	}
+
+}

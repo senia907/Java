@@ -1,0 +1,6 @@
+package model;
+
+public interface Model {
+	void zipfile(String fileName);
+	void unZipfile(String fileName);
+}

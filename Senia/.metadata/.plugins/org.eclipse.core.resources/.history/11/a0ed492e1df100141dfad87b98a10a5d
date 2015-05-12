@@ -1,0 +1,6 @@
+package view;
+
+public interface View {
+	void start(String exitWord);
+	void display(String s);
+}

@@ -1,0 +1,15 @@
+package compression_algorithms;
+
+import java.util.BitSet;
+
+class Hchar{
+	int count;
+	String character;
+	Hchar left=null,right=null;
+	// an inefficient representation, change it to real bits!VV
+	String binRep="";
+    BitSet bits = new BitSet();
+    
+	@Override
+	public int hashCode(){return character.hashCode(); }
+}

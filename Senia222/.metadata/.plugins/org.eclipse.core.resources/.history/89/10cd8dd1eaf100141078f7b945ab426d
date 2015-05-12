@@ -1,9 +1,0 @@
-package view;
-
-import java.io.File;
-
-public interface View {
-	void start();
-	void display(String s);
-	void display(File file);
-}

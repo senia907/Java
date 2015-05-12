@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;myAlgs.jar&apos; to &apos;CLI/src&apos;&#x0D;&#x0A;- Original project: &apos;test&apos;&#x0D;&#x0A;- Destination element: &apos;CLI/src&apos;&#x0D;&#x0A;- Original element: &apos;myAlgs.jar&apos;" description="Copy file" destination="=CLI/src" element1="lib/myAlgs.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1430232778111" units="0" version="1.0"/>
-</session>

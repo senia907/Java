@@ -1,7 +1,0 @@
-1-b) HashSet is an unordered collection containing unique elements. It has the standard collection operations Add, Remove, Contains, but since it uses a hash-based implementation, these operation are O(1). (As opposed to List for example, which is O(n) for Contains and Remove.) HashSet also provides standard set operations such as union, intersection, and symmetric difference.Take a look here
-
-2) There are different implementations of Sets. Some make insertion and lookup operations super fast by hashing elements. However that means that the order in which the elements were added is lost. Other implementations preserve the added order at the cost of slower running times.
-
-The HashSet class in C# goes for the first approach, thus not preserving the order of elements. It is much faster than a regular List. Some basic benchmarks showed that HashSet is decently faster when dealing with primary types (int, double, bool, etc.). It is a lot faster when working with class objects. So that point is that HashSet is fast.
-
-The only catch of HashSet is that there is no access by indices. To access elements you can either use an enumerator or use the built-in function to convert the HashSet into a List and iterate through that.Take a look here

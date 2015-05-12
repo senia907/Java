@@ -1,0 +1,16 @@
+package model;
+
+public interface Model {
+	/*void zipfile(String fileName);
+	void unZipfile(String fileName);*/
+	//
+	void doDirCommand(String path);
+	void doZipCommand(String filePath);
+	void doUnZipCommand(String filePath);
+	void doHuffmanCommpressCommand(String filePath);
+	void doHuffmanDeCommpressCommand(String filePath);
+	void doDicCommand(String fileName);
+	void doUndicCommand(String fileName);
+	void doSizeCommand(String path);
+	
+}

@@ -1,0 +1,215 @@
+package view;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
+
+import compression_algorithms.WordDictionary;
+import compression_algorithms.ZippedDir;
+import algorithms.demo.Demo;
+
+//import algorithms.MyZip;
+//import algorithms.ZippedDictionary;
+
+public class UserCommands {
+	
+	private HashMap<String, Command> commands = 
+			new HashMap<String,Command>();
+	
+	public UserCommands()
+	{
+		commands.put("dir", new DirCommand());
+		commands.put("zip", new ZipCommand());
+		commands.put("unzip", new UnZipCommand());
+		commands.put("huf", new HuffmanCommpress());
+		commands.put("huf", new HuffmanDeCommpress());
+		commands.put("dic", new DicCommand());
+		commands.put("dic", new UnDicCommand());
+		commands.put("size", new Size());
+		// add the other commands to the hash map...
+	}
+	
+	public Command selectCommand(String commandName){
+		return commands.get(commandName);
+	}
+	
+	private class DirCommand implements Command{
+
+		@Override
+		public void doCommand(String path) {
+			File file = new File(path);
+			
+			if (file.isFile()){
+				System.out.println(file);
+			}
+			else{
+				for (File f : file.listFiles()){
+					System.out.println(f);
+				}
+			}
+		}
+	}
+	
+	private class ZipCommand implements Command{
+		@Override
+		public void doCommand(String filePath) {
+			System.out.println("Compressing file...");
+	        byte[] buffer = new byte[1024];
+	        try {
+	            String dest = filePath;
+	            dest=dest+".zip";	//adds the .zip in the end of the file to show its zipped
+	        	FileOutputStream fileOutputStream =new FileOutputStream(dest);
+	            GZIPOutputStream gzipOuputStream = new GZIPOutputStream(fileOutputStream);
+	            FileInputStream fileInput = new FileInputStream(filePath);
+	            int bytes_read;
+	            while ((bytes_read = fileInput.read(buffer)) > 0) {
+	                gzipOuputStream.write(buffer, 0, bytes_read);
+	            }
+	            fileInput.close();
+	            gzipOuputStream.finish();
+	            gzipOuputStream.close();
+	            System.out.println("The file was compressed successfully!");
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+		}
+	}
+	
+	private class UnZipCommand implements Command{
+			@Override
+			public void doCommand(String filePath) {
+				System.out.println("DeCompressing file...");
+				byte[] buffer = new byte[1024];
+
+				try {
+		            String dest = filePath;
+		            dest.substring(0, dest.length()-4);//removes the .zip in the end, leaving the original .???
+					FileInputStream fileIn = new FileInputStream(filePath);
+					GZIPInputStream gZIPInputStream = new GZIPInputStream(fileIn);
+					FileOutputStream fileOutputStream = new FileOutputStream(dest);
+					int bytes_read;
+					while ((bytes_read = gZIPInputStream.read(buffer)) > 0) {
+						fileOutputStream.write(buffer, 0, bytes_read);
+					}
+					gZIPInputStream.close();
+					fileOutputStream.close();
+					System.out.println("The file was decompressed successfully!");
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}		
+		}
+	
+	private class HuffmanCommpress implements Command{
+		@Override
+		public void doCommand(String filePath) {
+			//Call for the HuffmanCommpress we made in "my algorithms" in Part A
+		}
+	}
+	
+	private class HuffmanDeCommpress implements Command{
+		@Override
+		public void doCommand(String filePath) {
+			//Call for the HuffmanDeCommpress we made in "my algorithms" in Part A
+		}
+	}
+	
+	private class DicCommand implements Command{
+		@Override
+		public void doCommand(String fileName) {			
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+				
+				StringBuffer buffer = new StringBuffer();
+				String line;
+				while ((line = reader.readLine()) != null)
+				{
+					buffer.append(line);
+				}
+				
+				String str = buffer.toString();
+				WordDictionary myZip = new WordDictionary();
+				ZippedDir dict;//Stream Problem = myZip.compress(str);
+				
+				ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName + ".dic"));
+				//Stream Problem out.writeObject(dict);
+				out.close();
+				
+				System.out.println("Compression finished");
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}		
+	}
+	
+	private class UnDicCommand implements Command{
+		@Override
+		public void doCommand(String fileName) {			
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+				
+				StringBuffer buffer = new StringBuffer();
+				String line;
+				while ((line = reader.readLine()) != null){
+					buffer.append(line);
+				}
+				String str = buffer.toString();		//Change to deCompress after part A done.
+				WordDictionary myZip = new WordDictionary();
+				ZippedDir dict;//Stream Problem = myZip.compress(str);
+				
+				ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName + ".dic"));
+				//Stream Problem out.writeObject(dict);
+				out.close();
+				
+				System.out.println("Compression finished");
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}		
+	}
+	
+	private class Size implements Command{
+
+		@Override
+		public void doCommand(String path) {
+			BufferedInputStream in = null;
+			try {
+				in = new BufferedInputStream(new FileInputStream(path));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			int size=0;
+					try {
+						while((in.read())!=-1){
+							size++;
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			System.out.println("File size is: "+size);
+
+		}
+	}
+	// all other commands...
+}

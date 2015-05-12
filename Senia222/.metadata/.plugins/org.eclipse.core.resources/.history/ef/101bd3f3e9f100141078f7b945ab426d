@@ -1,0 +1,13 @@
+package compression_algorithms;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.stream.Stream;
+
+public interface Compressor {
+	public OutputStream compress(InputStream in,OutputStream out);
+	public OutputStream deCompress(InputStream in,OutputStream out) throws IOException, ClassNotFoundException;
+	
+
+}

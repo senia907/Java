@@ -1,0 +1,10 @@
+package compression_algorithms;
+
+import java.util.BitSet;
+
+public class Charnode {
+	char ch;
+	String stRep;
+	BitSet bitRep = new BitSet();
+
+}

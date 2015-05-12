@@ -1,0 +1,21 @@
+package compression_algorithms;
+import java.io.Serializable;
+import java.util.BitSet;
+
+/**
+* Used for easy storing the char and its BitSet representation.
+* @author  Senia Kalma
+* @since   3/5/2015
+*/
+public class StringNode implements Serializable {
+	String word;
+	int index;
+	public String toString(){
+		String data="";
+		data+="Word: "+this.word;
+		data+=" in index: "+this.index;
+		
+		return data;
+	}
+
+}

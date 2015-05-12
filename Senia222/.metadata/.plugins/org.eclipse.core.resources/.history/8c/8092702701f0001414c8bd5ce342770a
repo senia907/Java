@@ -1,0 +1,11 @@
+package compression_algorithms;
+
+class Hchar{
+	int count;
+	String character;
+	Hchar left=null,right=null;
+	// an inefficient representation, change it to real bits!VV
+	String binRep="";
+	@Override
+	public int hashCode(){return character.hashCode(); }
+}

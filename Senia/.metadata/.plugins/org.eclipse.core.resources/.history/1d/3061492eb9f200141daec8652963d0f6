@@ -1,7 +1,0 @@
-package view;
-
-import java.io.FileNotFoundException;
-
-public interface Command {
-	void doCommand(String arg) throws FileNotFoundException;
-}
